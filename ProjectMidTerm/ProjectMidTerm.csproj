@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{21406BE0-F32A-48ED-B474-2754D6FBF833}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ProjectMidTerm</RootNamespace>
+    <AssemblyName>ProjectMidTerm</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseNotificationClass.cs" />
+    <Compile Include="Container.cs" />
+    <Compile Include="Enums\Races.cs" />
+    <Compile Include="EventArgs\GameMessageEventArgs.cs" />
+    <Compile Include="Factories\ItemFactory.cs" />
+    <Compile Include="Factories\QuestFactory.cs" />
+    <Compile Include="Factories\WorldFactory.cs" />
+    <Compile Include="Models\Creatures\AwakenedShrub.cs" />
+    <Compile Include="Models\Creatures\AwakenedTree.cs" />
+    <Compile Include="Models\Creatures\BlinkDog.cs" />
+    <Compile Include="Models\Creatures\Creature.cs" />
+    <Compile Include="Dice.cs" />
+    <Compile Include="Enums\Direction.cs" />
+    <Compile Include="Interfaces\ILocatable.cs" />
+    <Compile Include="Interfaces\IMobile.cs" />
+    <Compile Include="Interfaces\IActionable.cs" />
+    <Compile Include="Interfaces\IUsable.cs" />
+    <Compile Include="Models\Creatures\Dryad.cs" />
+    <Compile Include="Models\Creatures\DustMephit.cs" />
+    <Compile Include="Models\Creatures\Elemental.cs" />
+    <Compile Include="Models\Creatures\Fey.cs" />
+    <Compile Include="Models\Creatures\IceMephit.cs" />
+    <Compile Include="Models\Creatures\InvisibleStalker.cs" />
+    <Compile Include="Models\Creatures\MagmaMephit.cs" />
+    <Compile Include="Models\Creatures\Monster.cs" />
+    <Compile Include="Models\Creatures\PCharacter.cs" />
+    <Compile Include="Models\Creatures\Plant.cs" />
+    <Compile Include="Models\Creatures\Satyr.cs" />
+    <Compile Include="Models\Creatures\ShamblingMound.cs" />
+    <Compile Include="Models\Creatures\Sprite.cs" />
+    <Compile Include="Models\Creatures\SteamMephit.cs" />
+    <Compile Include="Models\Creatures\VioletFungus.cs" />
+    <Compile Include="Models\GroupedInventoryItem.cs" />
+    <Compile Include="Models\ItemQuantity.cs" />
+    <Compile Include="Models\Items\Collectable.cs" />
+    <Compile Include="Models\Items\ExperiencePotion.cs" />
+    <Compile Include="Models\Items\HealingPotion.cs" />
+    <Compile Include="Models\Items\Item.cs" />
+    <Compile Include="Models\Items\MonsterDrop.cs" />
+    <Compile Include="Models\Items\Orb.cs" />
+    <Compile Include="Models\Items\Potion.cs" />
+    <Compile Include="Models\Items\Sword.cs" />
+    <Compile Include="Models\Items\Weapon.cs" />
+    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\Quest.cs" />
+    <Compile Include="Models\QuestStatus.cs" />
+    <Compile Include="Models\World.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\GameSession.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Locations\Forest.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Locations\Horizon.jpg" />
+    <Resource Include="Images\Locations\Lake.jpg" />
+    <Resource Include="Images\Locations\Field.jpg" />
+    <Resource Include="Images\Locations\Inferno.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Locations\Map.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Locations\VOID.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Creatures\AwakenedShrub.PNG" />
+    <Resource Include="Images\Creatures\AwakenedTree.PNG" />
+    <Resource Include="Images\Creatures\BlinkDog.PNG" />
+    <Resource Include="Images\Creatures\Cacti.JPG" />
+    <Resource Include="Images\Creatures\Dryad.PNG" />
+    <Resource Include="Images\Creatures\DustMephit.PNG" />
+    <Resource Include="Images\Creatures\IceMephit.PNG" />
+    <Resource Include="Images\Creatures\InvisibleStalker.PNG" />
+    <Resource Include="Images\Creatures\MagmaMephit.PNG" />
+    <Resource Include="Images\Creatures\Satyr.PNG" />
+    <Resource Include="Images\Creatures\ShamblingMound.PNG" />
+    <Resource Include="Images\Creatures\Sprite.PNG" />
+    <Resource Include="Images\Creatures\SteamMephit.PNG" />
+    <Resource Include="Images\Creatures\VioletFungus.PNG" />
+    <Resource Include="Images\Creatures\Dragonborn.PNG" />
+    <Resource Include="Images\Creatures\Dwarf.PNG" />
+    <Resource Include="Images\Creatures\Elf.PNG" />
+    <Resource Include="Images\Creatures\Gnome.PNG" />
+    <Resource Include="Images\Creatures\HalfElf.PNG" />
+    <Resource Include="Images\Creatures\Halfling.PNG" />
+    <Resource Include="Images\Creatures\HalfOrc.PNG" />
+    <Resource Include="Images\Creatures\Human.PNG" />
+    <Resource Include="Images\Creatures\Tiefling.PNG" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,376 @@
+﻿<Window x:Class="WPFUI.BattleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFUI"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterOwner"
+        FontSize="10pt"
+        WindowStyle="None"
+        AllowsTransparency="True" Background="Transparent"
+        Title="BattleWindow" Height="800" Width="1200" ResizeMode="NoResize" >
+
+
+    <Border Background="#FFFFFF" BorderThickness="0" BorderBrush="#FFFFFF" Opacity=".95" Grid.Column="0" Grid.Row="0" CornerRadius="30,30,30,30">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <!-- Player Stats -->
+            <Grid Grid.Row="0" Grid.Column="0">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" FontSize="25pt" Content="{Binding CurrentPlayer.Name}" />
+                    <Grid Grid.Row="0" Grid.Column="0" Opacity="1">
+                        <Rectangle RadiusX="30" RadiusY="30" Margin="0, 55, 0, 0"  Width="250" Height="250" Panel.ZIndex="1" Opacity="1" FlowDirection="RightToLeft">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="{Binding CurrentPlayer.ImageName}"  />
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </Grid>
+
+
+                    <!-- Name, Race, HP, XP, Level, Armor -->
+                    <Grid Grid.Row="1" Grid.Column="0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="60" />
+                                <ColumnDefinition Width="40" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"  FontSize="15" Content="{Binding CurrentPlayer.Name}" />
+                            <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" FontSize="15" HorizontalAlignment="Right" Content="{Binding CurrentPlayer.Race}" />
+                            <Label Grid.Row="1" Grid.Column="0" FontSize="12" Content="HP: " />
+                            <Label Grid.Row="1" Grid.Column="1" FontSize="12" Content="{Binding CurrentPlayer.DisplayHP}" />
+                            <Label Grid.Row="1" Grid.Column="2" FontSize="12" Content="XP: " />
+                            <Label Grid.Row="1" Grid.Column="3" FontSize="12" HorizontalAlignment="Right" Content="{Binding CurrentPlayer.ExperiencePoints}" />
+                            <Label Grid.Row="2" Grid.Column="0" FontSize="12" Content="Level: " />
+                            <Label Grid.Row="2" Grid.Column="1" FontSize="12" Content="{Binding CurrentPlayer.Level}" />
+                            <Label Grid.Row="2" Grid.Column="2" FontSize="12" Content="Armor: " />
+                            <Label Grid.Row="2" Grid.Column="3" FontSize="12" HorizontalAlignment="Right" Content="{Binding CurrentPlayer.ArmorClass}" />
+                        </Grid>
+                    </Grid>
+
+                    <!-- STR to CHA -->
+                    <Grid Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 10, 0, 0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="50" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="STR: " />
+                            <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentPlayer.Strength}" />
+                            <Label Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="DEX: " />
+                            <Label Grid.Row="0" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentPlayer.Dexterity}" />
+                            <Label Grid.Row="0" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" Content="CON: " />
+                            <Label Grid.Row="0" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentPlayer.Constitution}" />
+
+                            <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="INT: " />
+                            <Label Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentPlayer.Intelligence}" />
+                            <Label Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="WIS: " />
+                            <Label Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center"  Content="{Binding CurrentPlayer.Wisdom}" />
+                            <Label Grid.Row="1" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" Content="CHA: " />
+                            <Label Grid.Row="1" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentPlayer.Charisma}" />
+                        </Grid>
+                    </Grid>
+
+                    <!-- Resists and Dark Vision -->
+                    <Label Grid.Row="3" Margin="0, 20, 0, 0"  Grid.Column="0" HorizontalAlignment="Center" FontSize="15pt" Content="Resistance and Weakness" />
+                    <Grid Grid.Row="4" Grid.Column="0" Margin="0, 5, 0, 0"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="60" />
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="60" />
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="50" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Acid: " />
+                            <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentPlayer.ResistanceToAcid}" />
+                            <Label Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Bludg: " />
+                            <Label Grid.Row="0" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentPlayer.ResistanceToBludgeoning}" />
+                            <Label Grid.Row="0" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Cold: " />
+                            <Label Grid.Row="0" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentPlayer.ResistanceToCold}" />
+
+                            <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Fire: " />
+                            <Label Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentPlayer.ResistanceToFire}" />
+                            <Label Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Force: " />
+                            <Label Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentPlayer.ResistanceToForce}" />
+                            <Label Grid.Row="1" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Lghtn: " />
+                            <Label Grid.Row="1" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentPlayer.ResistanceToLightning}" />
+
+                            <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Necro: " />
+                            <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentPlayer.ResistanceToNecrotic}" />
+                            <Label Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Pierc: " />
+                            <Label Grid.Row="2" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentPlayer.ResistanceToPiercing}" />
+                            <Label Grid.Row="2" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Poisn: " />
+                            <Label Grid.Row="2" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentPlayer.ResistanceToPoison}" />
+
+                            <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Psych: " />
+                            <Label Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentPlayer.ResistanceToPsychic}" />
+                            <Label Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Radnt: " />
+                            <Label Grid.Row="3" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentPlayer.ResistanceToRadiant}" />
+                            <Label Grid.Row="3" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Slash: " />
+                            <Label Grid.Row="3" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentPlayer.ResistanceToSlashing}" />
+
+                            <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Thund: " />
+                            <Label Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentPlayer.ResistanceToThunder}" />
+                            <Label Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <Label Grid.Row="4" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                            <Label Grid.Row="4" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" Content="DrkVis: " />
+                            <Label Grid.Row="4" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentPlayer.Darkvision}" />
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="415*" />
+                    <RowDefinition Height="353*"/>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <RichTextBox Grid.Row="0" Grid.Column="0"
+                             x:Name="GameMessages"
+                             Background="#C0C0C0"
+                             VerticalScrollBarVisibility="Auto" Margin="15"
+                             IsReadOnly="True">
+                    <RichTextBox.Resources>
+                        <Style TargetType="{x:Type Paragraph}">
+                            <Setter Property="Margin" Value="0"/>
+                        </Style>
+                    </RichTextBox.Resources>
+                </RichTextBox>
+                <Grid Grid.Row="1" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <Button Grid.Row="0" Grid.Column="0" 
+                            Margin="10" 
+                            Width="200"
+                            Height="150"
+                            FontSize="30"
+                            Background="#C0C0C0"
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Click="OnClick_Attack"
+                            IsEnabled="{Binding AttackEnabled}"
+                            Content="Attack" />
+
+                    <Button Grid.Row="0" Grid.Column="1" 
+                            Margin="10" 
+                            Width="200"
+                            Height="150"
+                            FontSize="30"
+                            Background="#C0C0C0"
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Click="OnClick_DisplayInventoryScreen"                            
+                            IsEnabled="{Binding AttackEnabled}"
+                            Content="Items"/>
+                    
+                    <Button Grid.Row="1" Grid.Column="0"
+                            Margin="10"
+                            Width="200"
+                            Height="150"
+                            FontSize="30"
+                            Background="#C0C0C0"
+                            HorizontalAlignment="Center" VerticalAlignment="Center"                          
+                            IsEnabled="{Binding AttackEnabled}"
+                            Content="Defend"
+                            Click="OnClick_Defend"/>
+
+                    <Button Grid.Row="1" Grid.Column="1" 
+                            Margin="10" 
+                            Width="200"
+                            Height="150"
+                            FontSize="30"
+                            Background="#C0C0C0"
+                            HorizontalAlignment="Center" VerticalAlignment="Center" 
+                            Content="Flee" Click="OnClick_Close"/>
+                </Grid>
+            </Grid>
+
+            <!-- Monster Stats -->
+            <Grid Grid.Row="0" Grid.Column="2">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" FontSize="25pt" Content="{Binding CurrentMonster.Name}" />
+                    <Grid Grid.Row="0" Grid.Column="0" Opacity="1">
+                        <Rectangle RadiusX="30" RadiusY="30" Margin="0, 55, 0, 0"  Width="250" Height="250" Panel.ZIndex="1" Opacity="1">
+                            <Rectangle.Fill>
+                                <ImageBrush ImageSource="{Binding CurrentMonster.ImageName}" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </Grid>
+
+                    <!-- Name, Race, HP, XP, Level, Armor -->
+                    <Grid Grid.Row="1" Grid.Column="0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="60" />
+                                <ColumnDefinition Width="40" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"  FontSize="15" Content="{Binding CurrentMonster.Name}" />
+                            <Label Grid.Row="1" Grid.Column="0" FontSize="12" Content="HP: " />
+                            <Label Grid.Row="1" Grid.Column="1" FontSize="12" Content="{Binding CurrentMonster.DisplayHP}" />
+                            <Label Grid.Row="1" Grid.Column="2" FontSize="12" Content="Armor: " />
+                            <Label Grid.Row="1" Grid.Column="3" FontSize="12" HorizontalAlignment="Right" Content="{Binding CurrentMonster.ArmorClass}" />
+                        </Grid>
+                    </Grid>
+
+                    <!-- STR to CHA -->
+                    <Grid Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 40, 0, 0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="50" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="STR: " />
+                            <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentMonster.Strength}" />
+                            <Label Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="DEX: " />
+                            <Label Grid.Row="0" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentMonster.Dexterity}" />
+                            <Label Grid.Row="0" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" Content="CON: " />
+                            <Label Grid.Row="0" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentMonster.Constitution}" />
+
+                            <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="INT: " />
+                            <Label Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentMonster.Intelligence}" />
+                            <Label Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="WIS: " />
+                            <Label Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center"  Content="{Binding CurrentMonster.Wisdom}" />
+                            <Label Grid.Row="1" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" Content="CHA: " />
+                            <Label Grid.Row="1" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentMonster.Charisma}" />
+                        </Grid>
+                    </Grid>
+
+                    <!-- Resists and Dark Vision -->
+                    <Label Grid.Row="3" Margin="0, 20, 0, 0"  Grid.Column="0" HorizontalAlignment="Center" FontSize="15pt" Content="Resistance and Weakness" />
+                    <Grid Grid.Row="4" Grid.Column="0" Margin="0, 5, 0, 0"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="60" />
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="60" />
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="50" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Acid: " />
+                            <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentMonster.ResistanceToAcid}" />
+                            <Label Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Bludg: " />
+                            <Label Grid.Row="0" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentMonster.ResistanceToBludgeoning}" />
+                            <Label Grid.Row="0" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Cold: " />
+                            <Label Grid.Row="0" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentMonster.ResistanceToCold}" />
+
+                            <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Fire: " />
+                            <Label Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentMonster.ResistanceToFire}" />
+                            <Label Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Force: " />
+                            <Label Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentMonster.ResistanceToForce}" />
+                            <Label Grid.Row="1" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Lghtn: " />
+                            <Label Grid.Row="1" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentMonster.ResistanceToLightning}" />
+
+                            <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Necro: " />
+                            <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentMonster.ResistanceToNecrotic}" />
+                            <Label Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Pierc: " />
+                            <Label Grid.Row="2" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentMonster.ResistanceToPiercing}" />
+                            <Label Grid.Row="2" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Poisn: " />
+                            <Label Grid.Row="2" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentMonster.ResistanceToPoison}" />
+
+                            <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Psych: " />
+                            <Label Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentMonster.ResistanceToPsychic}" />
+                            <Label Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Radnt: " />
+                            <Label Grid.Row="3" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentMonster.ResistanceToRadiant}" />
+                            <Label Grid.Row="3" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Slash: " />
+                            <Label Grid.Row="3" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentMonster.ResistanceToSlashing}" />
+
+                            <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Thund: " />
+                            <Label Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentMonster.ResistanceToThunder}" />
+                            <Label Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <Label Grid.Row="4" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                            <Label Grid.Row="4" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" Content="DrkVis: " />
+                            <Label Grid.Row="4" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding CurrentMonster.Darkvision}" />
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+
+    </Border>
+
+</Window>

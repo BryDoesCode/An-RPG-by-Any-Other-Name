@@ -1,0 +1,180 @@
+﻿<Window x:Class="WPFUI.CharacterCreator"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFUI"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True" Background="Transparent"
+        FontSize="20"
+        Title="Character Creator" Height="600" Width="800" ResizeMode="NoResize">
+    
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
+    </Window.Resources>
+    
+    <Border Background="#FFFFFF" BorderThickness="0" BorderBrush="#FFFFFF" Opacity=".95" Grid.Column="0" Grid.Row="0" CornerRadius="30,30,30,30">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="300" />
+                <RowDefinition Height="300" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="400" />
+                <ColumnDefinition Width="400" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Row="0" Grid.Column="0" Margin="20, 15, 0, 5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="300" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Content="Name: " />
+                    <Grid Grid.Row="0" Grid.Column="1" Margin="0, 0, 75, 10">
+                        <TextBox Width="225" VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="NameTextBox" MaxLength="15"  BorderBrush="#686868" Background="#E1E1E1" Text="{Binding CurrentPlayer.Name}" />
+                        <TextBlock IsHitTestVisible="False" Margin="5, 0, 0, 0"  Text="Enter Name" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#000000">
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Text, ElementName=NameTextBox}" Value="">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </Grid>
+                    
+                    <Label Grid.Row="1" Grid.Column="0" Content="Race: " />
+                    <ComboBox Grid.Row="1" Grid.Column="1" Margin="0, 0, 75, 10"  SelectedItem="{Binding SelectedRaces}" ItemsSource="{Binding RacesValues}" />
+
+                    <Label Grid.Row="2" Grid.Column="0" Content="Bonus: " Visibility="{Binding IsTiefling, Converter={StaticResource BooleanToVisibility}}"/>
+                    <ComboBox Grid.Row="2" Grid.Column="1" Margin="0, 0, 75, 10" SelectedItem="{Binding TieflingBonusStat}" ItemsSource="{Binding TieflingBonusStatOptions}"
+                              Visibility="{Binding IsTiefling, Converter={StaticResource BooleanToVisibility}}"/>
+
+                    <Label Grid.Row="2" Grid.Column="0" Content="Bonus: " Visibility="{Binding IsHalfElf, Converter={StaticResource BooleanToVisibility}}"/>
+                    <ComboBox Grid.Row="2" Grid.Column="1" Margin="0, 0, 75, 10" SelectedItem="{Binding HalfElfBonusStatOne}" ItemsSource="{Binding HalfElfBonusStatOptionsOne}"
+                              Visibility="{Binding IsHalfElf, Converter={StaticResource BooleanToVisibility}}"/>
+                    <Label Grid.Row="3" Grid.Column="0" Content="Bonus: " Visibility="{Binding IsHalfElf, Converter={StaticResource BooleanToVisibility}}"/>
+                    <ComboBox Grid.Row="3" Grid.Column="1" Margin="0, 0, 75, 10" SelectedItem="{Binding HalfElfBonusStatTwo}" ItemsSource="{Binding HalfElfBonusStatOptionsTwo}"
+                              Visibility="{Binding IsHalfElf, Converter={StaticResource BooleanToVisibility}}"/>
+                    
+                </Grid>
+
+            </Grid>
+            <Grid Grid.Row="0" Grid.Column="1" Opacity="1">
+                <Rectangle RadiusX="30" RadiusY="30"  Width="250" Height="250" Panel.ZIndex="1" Opacity="1">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="{Binding CurrentPlayer.ImageName}" />
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Grid>
+            
+            
+            <Grid Grid.Row="1" Grid.Column="0" Margin="20, 0, 0, 0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="140" />
+                        <ColumnDefinition Width="160"/>
+                    </Grid.ColumnDefinitions>
+
+                    <DataGrid Grid.Row="0" Grid.Column="0" Margin="0, 44, 5, 5" AutoGenerateColumns="False" ItemsSource="{Binding StatsRolled}"
+                      HeadersVisibility="None" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" 
+                          GridLinesVisibility="None" Background="#FFFFFF" BorderBrush="#FFFFFF"  
+                          HorizontalContentAlignment="Right" VerticalContentAlignment="Bottom" RowHeight="40">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Label Grid.Row="0" Grid.Column="0" Content="Rolled Stats"/>
+
+
+
+
+                    <Grid Grid.Row="0" Grid.Column="1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="35" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Assign Stats" />
+                            <Label Grid.Row="1" Grid.Column="0" Content="STR" />
+                            <Label Grid.Row="2" Grid.Column="0" Content="DEX" />
+                            <Label Grid.Row="3" Grid.Column="0" Content="CON" />
+                            <Label Grid.Row="4" Grid.Column="0" Content="INT" />
+                            <Label Grid.Row="5" Grid.Column="0" Content="WIS" />
+                            <Label Grid.Row="6" Grid.Column="0" Content="CHA" />
+                            <ComboBox Grid.Row="1" Grid.Column="1" Validation.ErrorTemplate="{x:Null}" ItemsSource="{Binding STRStats}" SelectedItem="{Binding SelectedStat}"  IsEnabled="{Binding Path=STREnabled}" />
+                            <ComboBox Grid.Row="2" Grid.Column="1" Validation.ErrorTemplate="{x:Null}" ItemsSource="{Binding DEXStats}" SelectedItem="{Binding SelectedStat}"  IsEnabled="{Binding Path=DEXEnabled}" />
+                            <ComboBox Grid.Row="3" Grid.Column="1" Validation.ErrorTemplate="{x:Null}" ItemsSource="{Binding CONStats}" SelectedItem="{Binding SelectedStat}"  IsEnabled="{Binding Path=CONEnabled}"/>
+                            <ComboBox Grid.Row="4" Grid.Column="1" Validation.ErrorTemplate="{x:Null}" ItemsSource="{Binding INTStats}" SelectedItem="{Binding SelectedStat}"  IsEnabled="{Binding Path=INTEnabled}"/>
+                            <ComboBox Grid.Row="5" Grid.Column="1" Validation.ErrorTemplate="{x:Null}" ItemsSource="{Binding WISStats}" SelectedItem="{Binding SelectedStat}"  IsEnabled="{Binding Path=WISEnabled}"/>
+                            <ComboBox Grid.Row="6" Grid.Column="1" Validation.ErrorTemplate="{x:Null}" ItemsSource="{Binding CHAStats}" SelectedItem="{Binding SelectedStat}"  IsEnabled="{Binding Path=CHAEnabled}"/>
+                            <Button Grid.Row="1" Grid.Column="2"  Click="OnClick_StatChange"
+                                    Width="30" Tag="STR" IsEnabled="{Binding STREnabled}"
+                                    Content="√"/>
+                            <Button Grid.Row="2" Grid.Column="2"  Click="OnClick_StatChange"
+                                    Width="30" Tag="DEX" IsEnabled="{Binding DEXEnabled}"
+                                    Content="√"/>
+                            <Button Grid.Row="3" Grid.Column="2"  Click="OnClick_StatChange"
+                                    Width="30" Tag="CON" IsEnabled="{Binding CONEnabled}"
+                                    Content="√"/>
+                            <Button Grid.Row="4" Grid.Column="2"  Click="OnClick_StatChange"
+                                    Width="30" Tag="INT" IsEnabled="{Binding INTEnabled}"
+                                    Content="√"/>
+                            <Button Grid.Row="5" Grid.Column="2"  Click="OnClick_StatChange"
+                                    Width="30" Tag="WIS" IsEnabled="{Binding WISEnabled}"
+                                    Content="√"/>
+                            <Button Grid.Row="6" Grid.Column="2"  Click="OnClick_StatChange"
+                                    Width="30" Tag="CHA" IsEnabled="{Binding CHAEnabled}"
+                                    Content="√"/>
+                        </Grid>
+
+                    </Grid>
+
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" FontSize="15" TextWrapping="Wrap" Margin="20, 10, 10, 20" Text="{Binding CreationErrorMessage}"  Visibility="{Binding HasCreationError, Converter={StaticResource BooleanToVisibility}}"/>
+                    <Button Content="Reset" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0, 0, 0, 25"  Width="75" Click="OnClick_Reset" />
+                    <Button Content="Reroll" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0, 0, 0, 25"  Width="75" Click="OnClickReroll" />
+                    <Button Content="Save" Grid.Row="1" Grid.Column="2"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0, 0, 0, 25"  Width="75" Click="OnClick_Close" />
+                </Grid>
+                
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
