@@ -120,7 +120,6 @@
     <Resource Include="Images\Creatures\AwakenedShrub.PNG" />
     <Resource Include="Images\Creatures\AwakenedTree.PNG" />
     <Resource Include="Images\Creatures\BlinkDog.PNG" />
-    <Resource Include="Images\Creatures\Cacti.JPG" />
     <Resource Include="Images\Creatures\Dryad.PNG" />
     <Resource Include="Images\Creatures\DustMephit.PNG" />
     <Resource Include="Images\Creatures\IceMephit.PNG" />

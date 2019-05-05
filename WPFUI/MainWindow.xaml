@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         FontSize="12pt"
-        Title="MidTerm RPG" Height="720" Width="1280" ResizeMode="NoResize" >
+        Title="An RPG by Any Other Name" Height="720" Width="1280" ResizeMode="NoResize" >
     <Window.Background>
         <ImageBrush ImageSource="{Binding CurrentLocation.ImageName}" />
     </Window.Background>
